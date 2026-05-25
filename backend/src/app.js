@@ -1,5 +1,6 @@
-const express = require("express"); //carga la libreria express
-const cors = require("cors"); //carga la libreria cors
+const express = require('express'); //carga la libreria express
+const cors = require('cors'); //carga la libreria cors
+const knex = require('knex');
 const { body, validationResult } = require("express-validator");//express-validator devuelve un objeto que por medio de la desestructuracion obtenemos body y validationResults
 const db = require("./db");
 
