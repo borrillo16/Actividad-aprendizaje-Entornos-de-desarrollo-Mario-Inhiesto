@@ -14,7 +14,7 @@ const buscarAutoresPorId = async (id) => {
 
 const crearAutor = async (autor) => {
     const resultado = await db('autores').insert(autor);
-    return resultado; // devuelve el ID insertado
+    return resultado; 
 };
 
 
