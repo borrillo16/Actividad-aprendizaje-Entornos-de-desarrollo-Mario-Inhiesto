@@ -1,6 +1,4 @@
-/**
- * Añade un autor al DOM
- */
+
 function addAutorNode(id, nombre, pais) {
     const ul = document.getElementById('autores');
 
@@ -21,7 +19,7 @@ function addAutorNode(id, nombre, pais) {
     editBtn.onclick = function () {
         document.getElementById('nombre').value = nombre;
         document.getElementById('pais').value = pais;
-        window.editingId = id; // guardamos el id que estamos editando
+        window.editingId = id;
     };
 
     li.appendChild(editBtn);
@@ -29,9 +27,7 @@ function addAutorNode(id, nombre, pais) {
     ul.appendChild(li);
 }
 
-/**
- * Leer autores del backend
- */
+
 window.readAutores = function() {
     axios.get('http://localhost:8080/autores')
         .then(response => {
@@ -43,9 +39,6 @@ window.readAutores = function() {
         });
 };
 
-/**
- * Crear autor
- */
 window.addAutor = function() {
     const nombre = document.getElementById('nombre').value;
     const pais = document.getElementById('pais').value;
@@ -61,7 +54,7 @@ window.addAutor = function() {
             pais: pais
         }).then(() => {
             window.editingId = null;
-            location.reload(); // recarga la lista
+            location.reload(); 
         });
         return;
     }
@@ -75,9 +68,7 @@ window.addAutor = function() {
     });
 };
 
-/**
- * Eliminar autor
- */
+
 window.removeAutor = function(id) {
     axios.delete(`http://localhost:8080/autores/${id}`);
 };
