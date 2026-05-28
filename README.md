@@ -1,15 +1,18 @@
-Aplicación Web Biblioteca — Backend + Frontend
-Actividad de Aprendizaje — 2ª Evaluación  
-Entornos de Desarrollo — DAM
+***Aplicación Web Biblioteca — Backend + Frontend***
 
-Descripción del proyecto
+***Actividad de Aprendizaje — 2ª Evaluación***
+
+***Entornos de Desarrollo — DAM***
+
+**Descripción del proyecto**
+
 Este proyecto consiste en el desarrollo de una aplicación web completa formada por:
 
-Backend: API REST creada con Node.js + Express
+**Backend:** API REST creada con Node.js + Express
 
-Base de datos: SQLite
+**Base de datos:** SQLite
 
-Frontend: HTML + JavaScript + Axios + Bootstrap
+**Frontend:** HTML + JavaScript + Axios + Bootstrap
 
 El objetivo es gestionar dos elementos del modelo de datos:
 
@@ -17,11 +20,12 @@ Autores
 
 Libros
 
-Ambos cuentan con un CRUD completo: crear, listar, editar y eliminar.
+Ambos cuentan con un **CRUD**completo: crear, listar, editar y eliminar.
 
 Además, los libros están relacionados con los autores mediante el campo autor_id.
 
-Tecnologías utilizadas
+**Tecnologías utilizadas**
+
 Node.js
 
 Express
@@ -36,39 +40,28 @@ HTML5 + JavaScript
 
 Git + GitHub
 
-Estructura del proyecto
-Código
-/backend
-   ├── server.js
-   ├── database.js
-   ├── biblioteca.db
-   └── routes (si aplica)
 
-/frontend
-   ├── index.html
-   ├── src/html/autores.html
-   ├── src/html/libros.html
-   ├── src/js/autores.js
-   ├── src/js/libros.js
-   └── css (si aplica)
 
-README.md
+**Cómo ejecutar el backend**
 
-Cómo ejecutar el backend
 Instalar dependencias:
 
-Código
+**Código**
+
 npm install
 Iniciar el servidor:
 
-Código
+**Código**
+
 node server.js
 El backend se ejecutará en:
 
-Código
+**Código**
+
 http://localhost:8080
 
-Cómo ejecutar el frontend
+**Cómo ejecutar el frontend**
+
 No necesita servidor.
 Solo abre los siguientes archivos en el navegador:
 
