@@ -20,7 +20,9 @@ Autores
 
 Libros
 
-Ambos cuentan con un **CRUD**completo: crear, listar, editar y eliminar.
+Categorías
+
+cuentan con un **CRUD**completo: crear, listar, editar y eliminar.
 
 Además, los libros están relacionados con los autores mediante el campo autor_id.
 
