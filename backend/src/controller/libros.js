@@ -1,4 +1,4 @@
-const {buscarTodosLibros, buscarLibroPorId, crearLibro, editarLibro, eliminarLibro} = require('../service/libros.js');
+const { buscarTodosLibros, buscarLibroPorId, crearLibro, editarLibro, eliminarLibro } = require('../service/libros.js');
 
 
 const getLibros = async (req, res) => {
@@ -19,13 +19,13 @@ const getLibroPorId = async (req, res) => {
 
 
 const postLibro = async (req, res) => {
-    const { titulo, genero, autor_id } = req.body;
+    const { titulo, genero, autor_id, categoria_id } = req.body;
 
     if (!titulo || !autor_id) {
         return res.status(400).json({ error: "Faltan datos obligatorios" });
     }
 
-    const nuevoLibro = { titulo, genero, autor_id };
+    const nuevoLibro = { titulo, genero, autor_id, categoria_id };
 
     const id = await crearLibro(nuevoLibro);
 
@@ -39,9 +39,9 @@ const postLibro = async (req, res) => {
 
 const putLibro = async (req, res) => {
     const { id } = req.params;
-    const { titulo, genero, autor_id } = req.body;
+    const { titulo, genero, autor_id, categoria_id } = req.body;
 
-    const libroActualizado = { titulo, genero, autor_id };
+    const libroActualizado = { titulo, genero, autor_id, categoria_id };
 
     const resultado = await editarLibro(id, libroActualizado);
 

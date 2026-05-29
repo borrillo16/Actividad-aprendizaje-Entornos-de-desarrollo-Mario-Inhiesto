@@ -13,7 +13,10 @@ router.post(
     [
         body("titulo").notEmpty().withMessage("El título es obligatorio"),
         body("genero").notEmpty().withMessage("El género es obligatorio"),
-        body("autor_id").isInt({ min: 1 }).withMessage("El autor es obligatorio")
+        body("autor_id").isInt({ min: 1 }).withMessage("El autor es obligatorio"),
+        body("categoria_id").isInt({ min: 1 }).withMessage("La categoría es obligatoria")
+
+
     ],
     (req, res, next) => {
         const errors = validationResult(req);

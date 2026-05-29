@@ -34,20 +34,20 @@ function addAutorNode(id, nombre, pais) {
  */
 window.readAutores = function() {
 
-    if (autores.length === 0) {
-    document.getElementById("no-autores").style.display = "block";
-    } else {
-        document.getElementById("no-autores").style.display = "none";
-    }
-
     axios.get('http://localhost:8080/autores')
         .then(response => {
             const autores = response.data;
-            
+
+            if (autores.length === 0) {
+            document.getElementById("no-autores").style.display = "block";
+             } else {
+            document.getElementById("no-autores").style.display = "none";
+            }
+
             document.getElementById("autores").innerHTML = "";
 
-            autores.forEach(a => {
-                addAutorNode(a.id, a.nombre, a.pais);
+            autores.forEach(autor => {
+                addAutorNode(autor.id, autor.nombre, autor.pais);
             });
         });
 };
