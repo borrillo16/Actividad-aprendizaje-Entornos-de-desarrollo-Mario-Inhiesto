@@ -1,8 +1,11 @@
 const { db } = require('../configuration/db');
 
 const buscarTodosLibros = async () => {
-    const resultado = await db('libros').select('*');
-    return resultado;
+    return await db('libros').select(
+        'libros.*',
+        'categorias.nombre as categoria_nombre'
+    )
+     .leftJoin('categorias', 'libros.categoria_id', 'categorias.id');
 };
 
 const buscarLibroPorId = async (id) => {

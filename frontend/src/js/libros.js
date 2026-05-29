@@ -1,10 +1,10 @@
 
-function addLibroNode(id, titulo, genero, autor_id) {
+function addLibroNode(id, titulo, genero, autor_id, categoria_nombre, categoria_id) {
     const ul = document.getElementById('libros');
 
     const li = document.createElement('li');
     li.className = 'list-group-item';
-    li.appendChild(document.createTextNode(`${titulo} - ${genero || "Sin género"} (Autor ID: ${autor_id})`));
+    li.appendChild(document.createTextNode(`${titulo} - ${genero || "Sin género"} (Autor ID: ${autor_id}) (categoria: ${categoria_nombre || "Sin categoría"})`));
 
     const editBtn = document.createElement('button');
     editBtn.textContent = 'Editar';
@@ -14,6 +14,7 @@ function addLibroNode(id, titulo, genero, autor_id) {
         document.getElementById('titulo').value = titulo;
         document.getElementById('genero').value = genero;
         document.getElementById('autor_id').value = autor_id;
+        document.getElementById('categoria').value = categoria_id;
         window.editingLibroId = id; 
     };
 
@@ -36,14 +37,36 @@ function loadAutoresSelect() {
             const autores = response.data;
             const select = document.getElementById('autor_id');
 
-            autores.forEach(a => {
+            autores.forEach(autor => {
                 const option = document.createElement('option');
-                option.value = a.id;
-                option.textContent = a.nombre;
+                option.value = autor.id;
+                option.textContent = autor.nombre;
                 select.appendChild(option);
             });
         });
 }
+
+async function cargarCategorias() {
+    const respuesta = await fetch('http://localhost:8080/categorias');
+    const categorias = await respuesta.json();
+
+    const select = document.getElementById('categoria');
+    select.innerHTML = '';
+
+    categorias.forEach(categoria => {
+        const option = document.createElement('option');
+        option.value = categoria.id;
+        option.textContent = categoria.nombre;
+        select.appendChild(option);
+    });
+
+}
+
+    document.addEventListener('DOMContentLoaded', () => {
+    cargarCategorias();
+    cargarLibros();
+});
+
 
 window.readLibros = function() {
     loadAutoresSelect();
@@ -52,8 +75,8 @@ window.readLibros = function() {
         .then(response => {
             const libros = response.data;
 
-            libros.forEach(l => {
-                addLibroNode(l.id, l.titulo, l.genero, l.autor_id);
+            libros.forEach(libro => {
+                addLibroNode(libro.id, libro.titulo, libro.genero, libro.autor_id, libro.categoria_nombre, libro.categoria_id);
             });
         });
 };
@@ -63,8 +86,9 @@ window.addLibro = function() {
     const titulo = document.getElementById('titulo').value;
     const genero = document.getElementById('genero').value;
     const autor_id = document.getElementById('autor_id').value;
+    const categoria_id = document.getElementById('categoria').value;
 
-    if (!titulo || !genero || !autor_id) {
+    if (!titulo || !genero || !autor_id || !categoria_id) {
         alert('Todos los campos son obligatorios');
         return;
     }
@@ -73,7 +97,9 @@ window.addLibro = function() {
         axios.put(`http://localhost:8080/libros/${window.editingLibroId}`, {
             titulo: titulo,
             genero: genero,
-            autor_id: autor_id
+            autor_id: autor_id,
+            categoria_id: categoria_id
+
         }).then(() => {
             window.editingLibroId = null;
             location.reload();
@@ -84,10 +110,12 @@ window.addLibro = function() {
     axios.post('http://localhost:8080/libros', {
         titulo: titulo,
         genero: genero,
-        autor_id: autor_id
+        autor_id: autor_id,
+        categoria_id: categoria_id
+
     }).then(response => {
         const id = response.data.id;
-        addLibroNode(id, titulo, genero, autor_id);
+        addLibroNode(id, titulo, genero, autor_id, categoria_id);
     });
 };
 

@@ -15,9 +15,9 @@ router.post(
         body("pais").notEmpty().withMessage("El país es obligatorio")
     ],
     (req, res, next) => {
-        const errors = validationResult(req);
-        if (!errors.isEmpty()) {
-            return res.status(400).json({ errores: errors.array() });
+        const error = validationResult(req);
+        if (!error.isEmpty()) {
+            return res.status(400).json({ errores: error.array() });
         }
         next();
     },
