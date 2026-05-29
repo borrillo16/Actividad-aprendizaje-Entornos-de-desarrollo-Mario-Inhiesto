@@ -45,7 +45,6 @@ function loadAutoresSelect() {
         });
 }
 
-
 window.readLibros = function() {
     loadAutoresSelect();
 
@@ -65,8 +64,8 @@ window.addLibro = function() {
     const genero = document.getElementById('genero').value;
     const autor_id = document.getElementById('autor_id').value;
 
-    if (titulo === '') {
-        alert('El título es obligatorio');
+    if (!titulo || !genero || !autor_id) {
+        alert('Todos los campos son obligatorios');
         return;
     }
 
